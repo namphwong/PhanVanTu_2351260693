@@ -5,6 +5,8 @@ committed to this Git repository. Run the collector and preparation scripts
 from the repository root. The public Kaggle package is assembled from these
 outputs by `scripts/publish_kaggle.py`.
 
+Published dataset: https://www.kaggle.com/datasets/phantus/vietnam-hourly-rain-next-hour-domain-adaptation
+
 - `raw/<city>/<year>.json`: original Open-Meteo ERA5 response plus request and
   retrieval metadata.
 - `raw/SHA256SUMS.txt`: checksums of raw response files.

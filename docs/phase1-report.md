@@ -2,10 +2,18 @@
 
 ## Status
 
-Local data collection, preparation, validation, data card, and Kaggle package
-builder are ready. Phase 1 remains open until a verified Kaggle account is
-authenticated and the public dataset upload is checked. No Kaggle token or
-credential is stored in the repository.
+Phase 1 is complete. The dataset is published publicly on Kaggle at
+https://www.kaggle.com/datasets/phantus/vietnam-hourly-rain-next-hour-domain-adaptation.
+It was created under the `phantus` account with public visibility and the
+Attribution 4.0 International (CC BY 4.0) license. Kaggle confirmed successful
+creation, and its dataset page displays the uploaded raw and processed
+directories, data card, license, and citation. The ZIP upload was extracted by
+Kaggle into its 15-file directory structure.
+
+The Kaggle browser session was used for publication because the local CLI was
+not authenticated. No Kaggle API token or credential was added to the
+repository. The dataset page includes a summary describing the source, period,
+domain adaptation splits, and withheld target adaptation labels.
 
 ## Data source decision
 
@@ -44,18 +52,13 @@ resolution.
 
 - `python -m pytest -q --basetemp=.pytest-tmp`: 11 passed.
 - `ruff check scripts tests pyproject.toml`: passed.
-- `git diff --check`: passed.
+- `git diff --check`: passed before Kaggle publication.
 - All six raw file checksums and all three processed-file checksums were
-  independently rechecked.
-- Kaggle package assembly is covered by a test and includes raw, processed,
-  data card, license, citation, checksums, quality report, and generated
-  `dataset-metadata.json`.
+  independently rechecked before upload.
+- Kaggle package assembly includes raw, processed, data card, license,
+  citation, checksums, quality report, and generated `dataset-metadata.json`.
+- Kaggle confirmed successful public dataset creation. The dataset page shows
+  the uploaded directory tree and 15-file summary.
 
-## Remaining gate
-
-The Kaggle CLI is installed, but `kaggle datasets list --mine --csv` reports
-that the CLI is not authenticated. The installed PyPI CLI version does not
-expose `kaggle auth login`. Configure a Kaggle API key or access token in the
-user-local Kaggle configuration (never in the repo), provide the verified
-Kaggle username, then run the package publisher. The remaining steps are to
-create the public dataset and verify its resulting URL anonymously.
+The Kaggle page was verified in the authenticated owner session. An anonymous
+browser check was not available in this session.

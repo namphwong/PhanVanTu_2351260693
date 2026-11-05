@@ -39,12 +39,11 @@ Extensive experiments have been conducted on three real-world time series applic
 ## Updated Architecture
 
 The rain forecasting adaptation plan is being implemented in phases on the
-`codex/rain-dinov3` branch. The planned task predicts whether precipitation at
-the next hourly timestamp is at least 0.1 mm, using Hanoi as the source domain
-and Hai Phong as the target domain. See `configs/rain_hanoi_haiphong.yaml` for
-the initial experiment contract and `docs/legacy-audit.md` for the Phase 0
-review of the original code. No rain dataset, model, or results are included
-yet.
+`codex/rain-dinov3` branch. The task predicts whether precipitation at the next
+hourly timestamp is at least 0.1 mm, using Hanoi as the source domain and Hai
+Phong as the target domain. See `configs/rain_hanoi_haiphong.yaml` for the
+experiment contract and `docs/legacy-audit.md` for the Phase 0 review of the
+original code.
 
 ### Development setup
 
@@ -57,7 +56,7 @@ smoke test uses synthetic data and does not download datasets or checkpoints.
 ### Phase checklist
 
 - [x] Phase 0: scope, environment, and legacy smoke test
-- [ ] Phase 1: hourly weather data and Kaggle publication
+- [x] Phase 1: hourly weather data and Kaggle publication
 - [ ] Phase 2: baseline and SLARDA evaluation
 - [ ] Phase 3: DINOv3 encoder integration
 - [ ] Phase 4: Streamlit application
@@ -70,8 +69,10 @@ Phase 1 retrieves hourly ERA5 reanalysis for Hanoi and Hai Phong from 2023
 through 2025, stores yearly raw JSON with checksums, and creates hourly and
 24-hour window datasets. ERA5-Land was probed but returned nulls for several
 required fields, so the pipeline uses the fixed ERA5 model for both cities.
-Install publishing tools with `uv sync --extra publish`. Configure Kaggle
-credentials locally, then run
+The dataset is published at
+https://www.kaggle.com/datasets/phantus/vietnam-hourly-rain-next-hour-domain-adaptation.
+To publish a new version from the command line, install publishing tools with
+`uv sync --extra publish` and configure Kaggle credentials locally, then run
 `uv run python scripts/publish_kaggle.py --username <kaggle-username>`. The
 installed CLI accepts an API key file at
 `%USERPROFILE%\.kaggle\kaggle.json`, or an access token at
@@ -84,10 +85,10 @@ uv run python scripts/prepare_dataset.py --config configs/rain_hanoi_haiphong.ya
 ```
 
 Dataset provenance, schema, splits, limitations, license, and attribution are
-documented in `data/DATA_CARD.md`. Raw and processed data stay out of Git; use
-the Kaggle dataset link here after the public upload is verified.
-Current counts, checksums, verification results, and the remaining Kaggle gate
-are in `docs/phase1-report.md`.
+documented in `data/DATA_CARD.md`. Raw and processed data stay out of Git. The
+Kaggle dataset contains the extracted raw and processed files, data card,
+license, and citation. Current counts, checksums, and verification results are
+in `docs/phase1-report.md`.
 
 ## Citation
 If you found this work useful for you, please consider citing it.
