@@ -57,7 +57,7 @@ smoke test uses synthetic data and does not download datasets or checkpoints.
 
 - [x] Phase 0: scope, environment, and legacy smoke test
 - [x] Phase 1: hourly weather data and Kaggle publication
-- [ ] Phase 2: baseline and SLARDA evaluation
+- [x] Phase 2: baseline and SLARDA evaluation
 - [ ] Phase 3: DINOv3 encoder integration
 - [ ] Phase 4: Streamlit application
 - [ ] Phase 5: Docker image publication
@@ -89,6 +89,40 @@ documented in `data/DATA_CARD.md`. Raw and processed data stay out of Git. The
 Kaggle dataset contains the extracted raw and processed files, data card,
 license, and citation. Current counts, checksums, and verification results are
 in `docs/phase1-report.md`.
+
+### Phase 2: baselines and CNN SLARDA
+
+Run the reproducible Phase 2 experiment from the repository root:
+
+```powershell
+python scripts/run_phase2.py
+```
+
+The run evaluates B0 persistence and trains the B1 logistic-regression
+reference, then fits B2 source-only CNN and B3 CNN + SLARDA for the three
+configured seeds. Scaling is fit on Hanoi source training windows only. Epoch and probability-threshold
+selection use Hanoi source validation only; Hai Phong 2025 labels are loaded
+after all checkpoints and thresholds are fixed. Target adaptation labels are
+never used. Training settings are in `configs/rain_hanoi_haiphong.yaml`.
+
+Per-run JSON, `baseline_summary.csv`, and a four-panel confusion-matrix SVG are
+written to `artifacts/metrics/`. CNN and logistic-regression checkpoints are
+written under `artifacts/checkpoints/`; checkpoints are ignored by Git. Results and metric
+interpretation are recorded in `docs/phase2-report.md`.
+
+Target final-test results (2025):
+
+| Model | Macro-F1 | PR-AUC | Rain recall | Balanced accuracy |
+| --- | ---: | ---: | ---: | ---: |
+| B0 Persistence | 0.8801 | 0.7472 | 0.8343 | 0.8801 |
+| B1 Logistic regression | 0.8572 | 0.8805 | 0.7887 | 0.8541 |
+| B2 CNN source-only | 0.7839 ± 0.0095 | 0.8004 ± 0.0083 | 0.7617 ± 0.0927 | 0.7962 ± 0.0185 |
+| B3 CNN + SLARDA | 0.7889 ± 0.0050 | 0.8005 ± 0.0091 | 0.7519 ± 0.0416 | 0.7976 ± 0.0119 |
+
+B2 and B3 show mean ± standard deviation across seeds 17, 23, and 42. B0 and
+B1 are deterministic single runs. SLARDA makes a small Macro-F1 gain over the
+source-only CNN but does not beat persistence or logistic regression; see the
+report for limitations and the confusion matrices.
 
 ## Citation
 If you found this work useful for you, please consider citing it.

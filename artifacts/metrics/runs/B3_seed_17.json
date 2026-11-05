@@ -1,0 +1,122 @@
+{
+  "experiment": "Phase 2 B0-B3 hourly rain domain adaptation",
+  "dataset": "Vietnam Hourly Rain Next Hour Domain Adaptation",
+  "dataset_sha256": "f9e00c906fe9b1215ae8e99e7e5f18ee6680a0e154a2a7f06f1c9fcc74280d0a",
+  "git_sha": "98f0fad3ab63e209b302c2fcc7b9535896cb42a7",
+  "experiment_source_sha256": "f84034a860d4c001e1f7e20e99e55e7a455076c96fb6ce5cd94a3f9d6483aaf7",
+  "device": "cpu",
+  "feature_count": 11,
+  "window_hours": 24,
+  "num_classes": 2,
+  "domain_ids": {
+    "a": "hanoi",
+    "b": "hai_phong"
+  },
+  "fit_scaler_on": "source_train_only",
+  "config": {
+    "batch_size": 512,
+    "epochs": 8,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0003,
+    "patience": 3,
+    "adaptation_learning_rate": 0.0001,
+    "discriminator_learning_rate": 0.0001,
+    "pseudo_label_weight": 0.1,
+    "confidence_threshold": 0.9,
+    "teacher_momentum": 0.996,
+    "adversarial_weight": 1.0,
+    "num_threads": 4
+  },
+  "seeds": [
+    17,
+    23,
+    42
+  ],
+  "target_test_access": "deferred until checkpoints and thresholds were selected on source validation",
+  "model": "B3_cnn_slarda",
+  "seed": 17,
+  "best_epoch": 1,
+  "training_seconds": 7.705468999920413,
+  "training_history": [
+    {
+      "epoch": 1,
+      "target_loss": 0.6904269814491272,
+      "discriminator_loss": 0.7018675661087036,
+      "mean_confident_target_samples_per_batch": 305.12,
+      "validation_macro_f1": 0.7799244917975521,
+      "threshold": 0.69
+    },
+    {
+      "epoch": 2,
+      "target_loss": 0.675140471458435,
+      "discriminator_loss": 0.7175729775428772,
+      "mean_confident_target_samples_per_batch": 310.32,
+      "validation_macro_f1": 0.7755414515053254,
+      "threshold": 0.7699999999999999
+    },
+    {
+      "epoch": 3,
+      "target_loss": 0.6709655404090882,
+      "discriminator_loss": 0.7218124771118164,
+      "mean_confident_target_samples_per_batch": 317.96,
+      "validation_macro_f1": 0.7724900617298471,
+      "threshold": 0.7499999999999999
+    },
+    {
+      "epoch": 4,
+      "target_loss": 0.6781414842605591,
+      "discriminator_loss": 0.7153442144393921,
+      "mean_confident_target_samples_per_batch": 324.72,
+      "validation_macro_f1": 0.7669331341867927,
+      "threshold": 0.8699999999999999
+    }
+  ],
+  "validation_metrics": {
+    "threshold": 0.69,
+    "macro_f1": 0.7799244917975521,
+    "rain_f1": 0.7879858657243817,
+    "rain_recall": 0.7852112676056338,
+    "rain_precision": 0.7907801418439716,
+    "pr_auc": 0.8762553576181964,
+    "roc_auc": 0.8517960098376519,
+    "balanced_accuracy": 0.7800102139554886,
+    "confusion_matrix": [
+      [
+        812,
+        236
+      ],
+      [
+        244,
+        892
+      ]
+    ],
+    "n_samples": 2184,
+    "positive_rate": 0.5201465201465202
+  },
+  "checkpoint": "artifacts\\checkpoints\\B3_seed_17.pt",
+  "source_initialization_checkpoint": "artifacts\\checkpoints\\B2_seed_17.pt",
+  "target_adaptation_labels_used": false,
+  "target_final_test_metrics": {
+    "threshold": 0.69,
+    "macro_f1": 0.7840111492993531,
+    "rain_f1": 0.7021747143383708,
+    "rain_recall": 0.7063403781979978,
+    "rain_precision": 0.6980578966654453,
+    "pr_auc": 0.7932039497265038,
+    "roc_auc": 0.8864219490872056,
+    "balanced_accuracy": 0.7849469733347996,
+    "confusion_matrix": [
+      [
+        5215,
+        824
+      ],
+      [
+        792,
+        1905
+      ]
+    ],
+    "n_samples": 8736,
+    "positive_rate": 0.3087225274725275
+  },
+  "target_prediction_probability_sha256": "4f193075878037b58b63259f4357a3e9065a109b119260a9322f00099b06272e"
+}

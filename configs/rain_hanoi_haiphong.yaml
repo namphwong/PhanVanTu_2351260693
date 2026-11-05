@@ -15,6 +15,9 @@ data:
       longitude: 106.6881
   source_domain: hanoi
   target_domain: hai_phong
+  domain_ids:
+    a: hanoi
+    b: hai_phong
   start: "2023-01-01T00:00:00+07:00"
   end: "2025-12-31T23:00:00+07:00"
   frequency: 1h
@@ -33,10 +36,25 @@ splits:
 
 model:
   encoder: facebook/dinov3-vits16-pretrain-lvd1689m
+  input_channels: 11
   num_classes: 2
   backbone_frozen: true
   weather_raster_size: 224
   weather_raster_channels: 3
+
+phase2:
+  batch_size: 512
+  epochs: 8
+  learning_rate: 0.001
+  weight_decay: 0.0003
+  patience: 3
+  adaptation_learning_rate: 0.0001
+  discriminator_learning_rate: 0.0001
+  pseudo_label_weight: 0.1
+  confidence_threshold: 0.9
+  teacher_momentum: 0.996
+  adversarial_weight: 1.0
+  num_threads: 4
 
 reproducibility:
   seeds: [17, 23, 42]

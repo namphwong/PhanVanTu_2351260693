@@ -10,3 +10,14 @@ data/processed/
 checkpoints/
 artifacts/
 dist/
+!artifacts/
+artifacts/*
+!artifacts/metrics/
+artifacts/metrics/*
+!artifacts/metrics/baseline_summary.csv
+!artifacts/metrics/confusion_matrices.svg
+!artifacts/metrics/experiment_config.json
+!artifacts/metrics/phase2_run.json
+!artifacts/metrics/runs/
+artifacts/metrics/runs/*
+!artifacts/metrics/runs/*.json

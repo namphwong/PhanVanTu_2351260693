@@ -9,6 +9,7 @@ description = "SLARDA experiments for hourly rain prediction across Hanoi and Ha
 requires-python = ">=3.10,<3.13"
 dependencies = [
   "einops>=0.7,<1",
+  "joblib>=1.3,<2",
   "mat4py>=0.6,<1",
   "numpy>=1.24,<3",
   "pandas>=2.0,<3",
@@ -25,6 +26,9 @@ publish = ["kaggle>=1.6,<2", "six>=1.16,<2"]
 
 [tool.setuptools]
 py-modules = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
