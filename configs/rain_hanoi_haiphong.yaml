@@ -4,6 +4,15 @@ project:
   timezone: Asia/Bangkok
 
 data:
+  timezone: Asia/Bangkok
+  model: era5
+  cities:
+    hanoi:
+      latitude: 21.0278
+      longitude: 105.8342
+    hai_phong:
+      latitude: 20.8449
+      longitude: 106.6881
   source_domain: hanoi
   target_domain: hai_phong
   start: "2023-01-01T00:00:00+07:00"

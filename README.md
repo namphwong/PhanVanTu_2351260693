@@ -64,6 +64,31 @@ smoke test uses synthetic data and does not download datasets or checkpoints.
 - [ ] Phase 5: Docker image publication
 - [ ] Phase 6: CI/CD, deployment, and handoff guide
 
+### Data pipeline
+
+Phase 1 retrieves hourly ERA5 reanalysis for Hanoi and Hai Phong from 2023
+through 2025, stores yearly raw JSON with checksums, and creates hourly and
+24-hour window datasets. ERA5-Land was probed but returned nulls for several
+required fields, so the pipeline uses the fixed ERA5 model for both cities.
+Install publishing tools with `uv sync --extra publish`. Configure Kaggle
+credentials locally, then run
+`uv run python scripts/publish_kaggle.py --username <kaggle-username>`. The
+installed CLI accepts an API key file at
+`%USERPROFILE%\.kaggle\kaggle.json`, or an access token at
+`%USERPROFILE%\.kaggle\access_token` / `KAGGLE_API_TOKEN`. Do not commit or
+share those credentials.
+
+```powershell
+uv run python scripts/collect_open_meteo.py --config configs/rain_hanoi_haiphong.yaml
+uv run python scripts/prepare_dataset.py --config configs/rain_hanoi_haiphong.yaml
+```
+
+Dataset provenance, schema, splits, limitations, license, and attribution are
+documented in `data/DATA_CARD.md`. Raw and processed data stay out of Git; use
+the Kaggle dataset link here after the public upload is verified.
+Current counts, checksums, verification results, and the remaining Kaggle gate
+are in `docs/phase1-report.md`.
+
 ## Citation
 If you found this work useful for you, please consider citing it.
 ```

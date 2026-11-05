@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this dataset, cite it as below and attribute Open-Meteo and Copernicus ERA5."
+title: "Vietnam Hourly Rain Next Hour Domain Adaptation"
+type: dataset
+license: CC-BY-4.0
+authors:
+  - name: "SLARDA Rain Domain Adaptation contributors"
+  - name: "Open-Meteo"
+version: 1.0.0
+date-released: 2026-11-05
+repository-code: "https://github.com/namphwong/PhanVanTu_2351260693"
+url: "https://open-meteo.com/en/docs/historical-weather-api"
+references:
+  - type: dataset
+    title: "ERA5 hourly data on single levels from 1940 to present"
+    authors:
+      - family-names: "Hersbach"
+        given-names: "Hans"
+      - family-names: "Bell"
+        given-names: "Bill"
+      - name: "European Centre for Medium-Range Weather Forecasts"
+    doi: "10.24381/cds.adbb2d47"

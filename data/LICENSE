@@ -1,0 +1,8 @@
+Dataset license: Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+The underlying weather data is provided by Open-Meteo under CC BY 4.0. Please
+attribute “Weather data by Open-Meteo.com, based on Copernicus ERA5” and
+include the Open-Meteo Historical Weather API link:
+https://open-meteo.com/en/docs/historical-weather-api
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
