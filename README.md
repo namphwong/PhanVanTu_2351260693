@@ -56,7 +56,7 @@ smoke test uses synthetic data and does not download datasets or checkpoints.
 
 ### Phase checklist
 
-- [ ] Phase 0: scope, environment, and legacy smoke test
+- [x] Phase 0: scope, environment, and legacy smoke test
 - [ ] Phase 1: hourly weather data and Kaggle publication
 - [ ] Phase 2: baseline and SLARDA evaluation
 - [ ] Phase 3: DINOv3 encoder integration
