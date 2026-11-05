@@ -36,6 +36,34 @@ Extensive experiments have been conducted on three real-world time series applic
 
 2- Run 'train_CD.py' script
 
+## Updated Architecture
+
+The rain forecasting adaptation plan is being implemented in phases on the
+`codex/rain-dinov3` branch. The planned task predicts whether precipitation at
+the next hourly timestamp is at least 0.1 mm, using Hanoi as the source domain
+and Hai Phong as the target domain. See `configs/rain_hanoi_haiphong.yaml` for
+the initial experiment contract and `docs/legacy-audit.md` for the Phase 0
+review of the original code. No rain dataset, model, or results are included
+yet.
+
+### Development setup
+
+Use Python 3.10, 3.11, or 3.12 for the legacy SLARDA code. Install the project and
+development tools with `python -m pip install -e ".[dev]"`, then run
+`python -m pytest -q`. The original implementation targeted PyTorch 1.7; this
+branch upgrades the compatibility baseline to PyTorch 2.5 or newer. The legacy
+smoke test uses synthetic data and does not download datasets or checkpoints.
+
+### Phase checklist
+
+- [ ] Phase 0: scope, environment, and legacy smoke test
+- [ ] Phase 1: hourly weather data and Kaggle publication
+- [ ] Phase 2: baseline and SLARDA evaluation
+- [ ] Phase 3: DINOv3 encoder integration
+- [ ] Phase 4: Streamlit application
+- [ ] Phase 5: Docker image publication
+- [ ] Phase 6: CI/CD, deployment, and handoff guide
+
 ## Citation
 If you found this work useful for you, please consider citing it.
 ```

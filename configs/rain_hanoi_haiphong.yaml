@@ -1,0 +1,34 @@
+project:
+  name: vietnam_hourly_rain_domain_adaptation
+  task: binary_next_hour_rain
+  timezone: Asia/Bangkok
+
+data:
+  source_domain: hanoi
+  target_domain: hai_phong
+  start: "2023-01-01T00:00:00+07:00"
+  end: "2025-12-31T23:00:00+07:00"
+  frequency: 1h
+  window_hours: 24
+  precipitation_threshold_mm: 0.1
+  label_column: rain_next_hour
+  raw_dir: data/raw
+  processed_dir: data/processed
+
+splits:
+  source_train: ["2023-01-01", "2024-06-30"]
+  source_validation: ["2024-07-01", "2024-09-30"]
+  source_test: ["2024-10-01", "2024-12-31"]
+  target_adaptation_unlabeled: ["2023-01-01", "2024-12-31"]
+  target_final_test: ["2025-01-01", "2025-12-31"]
+
+model:
+  encoder: facebook/dinov3-vits16-pretrain-lvd1689m
+  num_classes: 2
+  backbone_frozen: true
+  weather_raster_size: 224
+  weather_raster_channels: 3
+
+reproducibility:
+  seeds: [17, 23, 42]
+  fit_scaler_on: source_train_only
